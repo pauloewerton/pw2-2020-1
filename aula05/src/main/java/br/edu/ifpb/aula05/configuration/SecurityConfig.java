@@ -15,7 +15,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] AUTH_LIST = {
             "/",
             "/agenda",
-            "/agenda/{id}"
+            "/agenda/{id}",
+            "/swagger-ui.html"
     };
 
     private static final String ADMIN_ROLE = "ADMIN";
@@ -39,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(AUTH_LIST).permitAll()
                 .antMatchers("/novocontato").hasRole(ADMIN_ROLE)
                 .anyRequest().authenticated()
+                .and().httpBasic()
                 .and().formLogin().permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
