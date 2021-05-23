@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <!--CSS-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <title>Agenda</title>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-light bg-light">
+                <span class="navbar-brand mb-0 h1" style="font-weight: bold;">Agenda</span>
+                <a href="/novocontato" class="btn btn-primary" role="button">Criar Contato</a>
+            </nav>
+        </header>
+
+        <section>
+            <div class="container" style="width: 40%; padding-bottom: 30%;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
+                        <li class="breadcrumb-item active" aria-current="page">Contatos</li>
+                    </ol>
+                </nav>
+
+                <div class="card shadow-sm bg-white rounded" style="margin-top: 20px;" th:each="contato : ${agenda}">
+                    <div class="card-body">
+                        <a th:href="${(#mvc.url('AC#getContato').arg(0, contato.id)).build()}">
+                            <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;">
+                                <span th:text="${contato.nome}"></span>
+                            </h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
